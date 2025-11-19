@@ -1,245 +1,123 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ညောင်လေးပင်မြို့နယ် စာရေးဆရာများအသင်း</title>
+    <meta charset="UTF-8">
+    <title>Local 24/7 TV Channel - Auto-Play Fix</title>
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <style>
+        /* ဗီဒီယိုကို ဖန်သားပြင် အလယ်တည့်တည့်တွင် ထားရန် CSS */
+        body {
+            /* Full screen setup */
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+            
+            /* Flexbox for perfect centering */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            flex-direction: column; /* To stack h2 and video */
+            overflow: auto; /* Allow scrolling if content is too large */
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+        h2 {
+            color: white; /* Header text color */
+            margin-bottom: 15px;
+            /* Adjust position slightly to ensure it's not cut off */
+            padding-top: 20px; 
+        }
 
-  <style>
-    :root {
-      --primary-color: #003366;
-      --accent-color: #ffcc00;
-      --bg-light: #f9f9fb;
-      --text-color: #333;
-      --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
+        /* ဗီဒီယိုကို အကြီးဆုံးထားရန် CSS */
+        .video-js {
+            /* Use viewport units for large screen size */
+            width: 90vw !important; /* Viewport အကျယ် ၉၀% */
+            height: 50.625vw !important; /* 16:9 ratio (90 * 9 / 16) - For fixed aspect ratio */
+            max-width: 1280px !important; /* Optional: Desktop အကြီးဆုံးအရွယ်အစား */
+            max-height: 720px !important; /* Optional: Desktop အကြီးဆုံးအရွယ်အစား */
+            
+            /* Ensure the ratio is maintained on smaller screens */
+            max-height: 80vh !important;
+            max-width: 100% !important;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: "Noto Sans Myanmar", sans-serif;
-      color: var(--text-color);
-      background-color: var(--bg-light);
-      overflow-x: hidden;
-    }
-
-    header {
-      background: linear-gradient(135deg, var(--primary-color), #005999);
-      color: #fff;
-      padding: 1.5rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: var(--shadow);
-    }
-
-    header h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 1rem;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: var(--accent-color);
-    }
-
-    .hero {
-      background: url('https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-      color: #fff;
-      text-align: center;
-      padding: 5rem 1rem;
-      position: relative;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .hero-content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      line-height: 1.3;
-    }
-
-    .hero-content p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
-
-    .btn-primary {
-      background-color: var(--accent-color);
-      color: var(--primary-color);
-      padding: 0.75rem 1.5rem;
-      border-radius: 25px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .btn-primary:hover {
-      background-color: #ffd633;
-    }
-
-    .posts {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 3rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .post-card {
-      background-color: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .post-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
-
-    .post-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .post-content {
-      padding: 1.5rem;
-    }
-
-    .post-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-bottom: 0.5rem;
-    }
-
-    .post-meta {
-      font-size: 0.9rem;
-      color: #888;
-      margin-bottom: 0.75rem;
-    }
-
-    .post-text {
-      font-size: 1rem;
-      color: #444;
-    }
-
-    footer {
-      background-color: var(--primary-color);
-      color: #fff;
-      text-align: center;
-      padding: 1.5rem 1rem;
-      margin-top: 3rem;
-    }
-
-    footer p {
-      margin-bottom: 0.5rem;
-    }
-
-    @media (max-width: 768px) {
-      .hero-content h2 {
-        font-size: 1.8rem;
-      }
-
-      nav {
-        display: none;
-      }
-    }
-  </style>
+        /* Responsive adjustment for small screens */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <header>
-    <h1>ညောင်လေးပင်မြို့နယ် စာရေးဆရာများအသင်း</h1>
-    <nav>
-      <a href="#">မူလစာမျက်နှာ</a>
-      <a href="#">သတင်းများ</a>
-      <a href="#">အဖွဲ့အကြောင်း</a>
-      <a href="#">ဆက်သွယ်ရန်</a>
-    </nav>
-  </header>
+    <h2>24/7 Myanmar TV Channel</h2>
+    <video
+        id="liveVideo"
+        class="video-js vjs-default-skin"
+        /* width="640" height="360" attributes are now overridden by CSS */
+        controls
+        autoplay
+        loop
+        muted /* <<<<< FIX: ဖွင့်လိုက်တာနဲ့ တန်းပွင့်စေဖို့ ဒီ attribute ကို ထည့်လိုက်ပါပြီ။ */
+        preload="auto" /* ဗီဒီယိုကို ချက်ချင်းစတင် Load စေရန် */
+    >
+        <source src="videos/video1.mp4" type="video/mp4" />
+    </video>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h2>ညောင်လေးပင်မြို့နယ် စာရေးဆရာများအသင်း</h2>
-      <p>လူ့အသိုင်းအဝိုင်းတွင် စာပေ၊ ယဉ်ကျေးမှုနှင့် ဗဟုသုတပျံ့နှံ့စေရန် ရည်ရွယ်ထားသော အသင်း။</p>
-      <a href="#posts" class="btn-primary">သတင်းများကြည့်ရန်</a>
-    </div>
-  </section>
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <script>
+        const schedule = [
+            {filename: "videos/video1.mp4", start: "08:00", end: "12:00"},
+            {filename: "videos/video2.mp4", start: "12:00", end: "18:00"},
+            {filename: "videos/video3.mp4", start: "18:00", end: "23:59"}
+        ];
 
-  <section id="posts" class="posts">
-    <div class="post-card">
-      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80" class="post-image" alt="Book">
-      <div class="post-content">
-        <h3 class="post-title">စာပေည အကြောင်းအရာ</h3>
-        <p class="post-meta">၁၃-အောက်တိုဘာ-၂၀၂၅ | စာရေးဆရာ ဦးမောင်မောင်</p>
-        <p class="post-text">အဖွဲ့မှ စာပေည ဆွေးနွေးပွဲကို အောင်မြင်စွာ ကျင်းပပြုလုပ်ခဲ့ပြီး အဖွဲ့ဝင်များမှ စာပေအကြောင်းတစ်ပုဒ်ချင်းစီကို ဖတ်ကြားခဲ့ပါသည်။</p>
-      </div>
-    </div>
+        const video = document.getElementById('liveVideo');
+        
+        // Initialize Video.js player instance
+        const player = videojs('liveVideo');
 
-    <div class="post-card">
-      <img src="https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?auto=format&fit=crop&w=800&q=80" class="post-image" alt="Pen and notebook">
-      <div class="post-content">
-        <h3 class="post-title">အဖွဲ့ဝင်အသစ်များကို ကြိုဆိုခြင်း</h3>
-        <p class="post-meta">၁၀-အောက်တိုဘာ-၂၀၂၅ | စာရေးဆရာမ မေထွန်းထွန်း</p>
-        <p class="post-text">အသင်းသို့ အသစ်ဝင်လာသော စာရေးဆရာသစ်များကို ကြိုဆိုခဲ့ပြီး အဖွဲ့အစည်းတိုးတက်ရေးအတွက် ဆွေးနွေးခဲ့ပါသည်။</p>
-      </div>
-    </div>
+        // *** Auto-play Tweak ***
+        // player.ready() ကို အသုံးပြုပြီး Video.js က စနစ်တကျ ready ဖြစ်တာနဲ့ ချက်ချင်း play ခြင်း
+        player.ready(function() {
+            // Ensure muted is set before trying to play for better browser compatibility
+            this.muted(true); 
+            
+            this.play().catch(error => {
+                // Play may still be blocked in some edge cases (e.g., mobile battery saver mode)
+                console.log("Auto-play failed, video is likely muted. Please click the play button or unmute.", error);
+            });
+        });
 
-    <div class="post-card">
-      <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=800&q=80" class="post-image" alt="Library">
-      <div class="post-content">
-        <h3 class="post-title">စာအုပ်ပြပွဲ ၂၀၂၅</h3>
-        <p class="post-meta">၅-အောက်တိုဘာ-၂၀၂၅ | စာရေးဆရာ ဦးလှမြင့်</p>
-        <p class="post-text">စာအုပ်ပြပွဲတွင် အဖွဲ့ဝင်များ၏ စာအုပ်အသစ်များကို ပြသခဲ့ပြီး ပြည်သူများမှ အထူးအကြိုက်များလှခဲ့ပါသည်။</p>
-      </div>
-    </div>
-  </section>
 
-  <footer>
-    <p>© <span id="year"></span> ညောင်လေးပင်မြို့နယ် စာရေးဆရာများအသင်း</p>
-    <p>အခမဲ့ ဝဘ်ဆိုက်ဖန်တီးခြင်းနှင့် စီမံခြင်း - Netlify</p>
-  </footer>
+        function checkSchedule() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2,'0');
+            const minutes = now.getMinutes().toString().padStart(2,'0');
+            const current = `${hours}:${minutes}`;
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+            for (const item of schedule) {
+                if (current >= item.start && current < item.end) {
+                    // Check if the current video source is already set
+                    if (!player.currentSrc() || player.currentSrc().split('/').pop() !== item.filename.split('/').pop()) {
+                        
+                        // Set new source
+                        player.src({ type: 'video/mp4', src: item.filename });
+                        
+                        // Try to play the new source
+                        player.play().catch(error => {
+                            console.log("Video source changed. Auto-play was blocked. Player will resume when possible.", error);
+                        });
+                    }
+                    return; 
+                }
+            }
+        }
+
+        // Start schedule check immediately
+        checkSchedule();
+        
+        // Continue checking the schedule every 10 seconds
+        setInterval(checkSchedule, 10000); 
+    </script>
 </body>
 </html>
-
