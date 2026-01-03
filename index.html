@@ -4,37 +4,145 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Parami English Speaking Class</title>
-
 <style>
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #f4f4f4; }
-header { background: #ff9900; color: white; padding: 1rem; text-align: center; }
-nav { background: #333; color: white; padding: 0.5rem; display: flex; justify-content: center; position: sticky; top: 0; z-index: 1000; }
-nav a { color: white; padding: 10px 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; cursor:pointer; }
-nav a:hover { background: #d32f2f; }
-.container { width: 90%; max-width: 1200px; margin: auto; padding: 20px; }
-.logo { width: 150px; border-radius: 50%; margin-bottom: 10px; }
-section { padding: 40px 0; border-bottom: 1px solid #ccc; }
-h2 { color: #d32f2f; text-align: center; border-bottom: 2px solid #d32f2f; display: inline-block; padding-bottom: 5px; }
-.center { text-align: center; }
-.image-gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-.image-gallery img { border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-.book-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-.book-item { width: 180px; text-align: center; background: white; padding: 10px; border-radius: 5px; }
-.book-item img { width: 100%; height: auto; border: 1px solid #ddd; }
-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
-table, th, td { border: 1px solid #ddd; }
-th, td { padding: 12px; text-align: left; }
-th { background-color: #d32f2f; color: white; }
-tr:nth-child(even) { background-color: #f2f2f2; }
-footer { text-align: center; padding: 20px; background: #333; color: white; margin-top: 20px; }
-.hidden{display:none;}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+header {
+    background: #ff9900;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+header .logo {
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+nav {
+    background: #333;
+    color: white;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+nav a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    cursor: pointer;
+}
+nav a:hover {
+    background: #d32f2f;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+section {
+    padding: 40px 0;
+    border-bottom: 1px solid #ccc;
+}
+h2 {
+    color: #d32f2f;
+    text-align: center;
+    border-bottom: 2px solid #d32f2f;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+.center {
+    text-align: center;
+}
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+.image-gallery img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    max-width: 100%;
+    height: auto;
+}
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+.book-item {
+    width: 180px;
+    text-align: center;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+.book-item img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+th {
+    background-color: #d32f2f;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    margin-top: 20px;
+}
+.hidden { display: none; }
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+}
+.flex-row img {
+    max-width: 100%;
+    height: auto;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<img src="logo.jpg" class="logo">
+<img src="logo.jpg" class="logo" alt="Parami Logo">
 <h1>PARAMI ENGLISH LANGUAGE TRAINING SCHOOL</h1>
 </header>
 
@@ -53,26 +161,19 @@ footer { text-align: center; padding: 20px; background: #333; color: white; marg
 <center><h2>ပါရမီ အင်္ဂလိပ်ဘာသာ သင်တန်းကျောင်း</h2></center>
 
 <div class="image-gallery">
-<img src="1.jpg" width="220">
-<img src="2.jpg" width="220">
-<img src="3.jpg" width="220">
+<img src="1.jpg" width="220" alt="">
+<img src="2.jpg" width="220" alt="">
+<img src="3.jpg" width="220" alt="">
 </div>
 
 <p>
 ပါရမီ အင်္ဂလိပ်ဘာသာ သင်တန်းကျောင်းတွင် အင်္ဂလိပ်ဘာသာကို အခြေခံအဆင့်မှ စတင်ကာ မြန်မာနိုင်ငံရှိ တက္ကသိုလ်များနှင့် 
-    နိုင်ငံခြားတက္ကသိုလ်များသို့ တက်ရောက်နိုင်သည့် အဆင့်မြင့်အထိ သံဃာတော်များ၊ သီလရှင်များနှင့် 
-    ကျောင်းသား/သူများအား သင်ကြားပေးလျက်ရှိပါသည်။ တက္ကသိုလ်ဝင်တန်း ကျောင်းသား/သူများ၊ 
-    တက္ကသိုလ်တက်ရောက်နေသော ကျောင်းသား/သူများနှင့် ဆရာ၊ ဆရာမများအား အခြေခံစနစ်မှ စ၍ 
-    နည်းမှန်လမ်းမှန်ဖြင့် သင်ကြားပေးကာ ဘဝတစ်လျှောက်လုံး အင်္ဂလိပ်ဘာသာကို မှန်ကန်ထိရောက်စွာ 
-    အသုံးပြုနိုင်ရန် လေ့ကျင့်ပေးပါသည်။ မူလတန်း၊ အလယ်တန်းနှင့် အထက်တန်းအဆင့် ပညာရေးကို 
-    တက်ရောက်နေသော ကလေးငယ်များအားလုံးအတွက် Speaking, Writing, Listening, Reading, Thinking Skills များအပြင်
-    Phonetics (အသံထွက်)၊ Grammar၊ Pair-talking၊ Talk-show လှုပ်ရှားမှုများကို ထည့်သွင်းပြီး အပြင်လောကတွင် 
-    လက်တွေ့အသုံးချနိုင်အောင် သင်တန်းအတွင်း လေ့ကျင့်သင်ကြား စီမံပေးလျက်ရှိပါသည်။ 
-    ထိုသို့သော Training သင်တန်းများကို စနစ်တကျ ထိရောက်စွာ သင်ကြားပို့ချပေးလျက်ရှိပါသည်။
+နိုင်ငံခြားတက္ကသိုလ်များသို့ တက်ရောက်နိုင်သည့် အဆင့်မြင့်အထိ သံဃာတော်များ၊ သီလရှင်များနှင့် 
+ကျောင်းသား/သူများအား သင်ကြားပေးလျက်ရှိပါသည်...
 </p>
 
-<div style="display:flex;gap:20px;align-items:flex-start;">
-<img src="founder.jpg" width="180">
+<div class="flex-row">
+<img src="founder.jpg" width="180" alt="">
 <p>
 <strong>တည်ထောင်သူ ဆရာတော် ဦးအင်္ဂ (တောင်ငူ)</strong><br>
 ၂၀၀၁ ခုနှစ်မှစ၍ အင်္ဂလိပ်ဘာသာ ပညာရေးကို စနစ်တကျ သင်ကြားပေးလာသော ဆရာတော်ဖြစ်ပြီး
@@ -83,29 +184,12 @@ footer { text-align: center; padding: 20px; background: #333; color: white; marg
 
 <section id="about" class="hidden">
 <h2>About Parami English Class</h2>
-<p>ကကျွန်ုပ်တို့၏ ပါရမီသင်တန်းကျောင်း ကို ဆရာတော် ဦးအင်္ဂ (တောင်ငူ) မှ တည်ထောင်ဖွင့်လှစ်ခဲ့ခြင်းဖြစ်ပြီး
-    ၂၀၀၁ ခုနှစ်မှစတင်ကာ ယနေ့အထိ ဆရာတော်ကိုယ်တိုင် ဦးစီးသင်ကြားပေးလျက်ရှိပါသည်။ 
-    ထို့အပြင် တက်သစ်စ လူငယ် ဆရာ၊ ဆရာမများကို မွေးထုတ်ပေးနိုင်ရန် ရည်ရွယ်၍ သင်တန်းကျောင်းမှ 
-    ဆရာတော်လက်ထွက် အရည်အချင်းပြည့်မီသော အတွေ့အကြုံရင့် ဆရာ၊ ဆရာမများ၏ ပံ့ပိုးကူညီမှုနှင့်အတူ 
-    စနစ်တကျ သင်ကြားပေးလျက်ရှိပါသည်။ ထိုသို့သော ခိုင်မာသည့် အခြေခံအင်အားနှင့် အစဉ်အလာကြိုးပမ်းအားထုတ်မှုများကြောင့် 
-    သင်တန်းကျောင်းသည် ယနေ့အချိန်ထိ ရပ်တည်တိုးတက်လာနိုင်ခဲ့ပြီး လက်ရှိအချိန်တွင် ပညာရေးအတွေ့အကြုံ ၂၅ နှစ်ကျော် ကို ဆက်လက်လျှောက်လှမ်းလျက်ရှိပါသည်။</p>
+<p>ကျွန်ုပ်တို့၏ ပါရမီသင်တန်းကျောင်း ကို ဆရာတော် ဦးအင်္ဂ (တောင်ငူ) မှ တည်ထောင်ဖွင့်လှစ်ခဲ့ခြင်းဖြစ်ပြီး...</p>
 </section>
 
 <section id="class" class="hidden">
 <h2>သင်တန်းများ</h2>
-    <p>ပါရမီ အင်္ဂလိပ်စကားပြော သင်တန်းကျောင်း မှ ဖွင့်လှစ်သင်ကြားပေးလျက်ရှိသော သင်တန်းများမှာ အောက်ပါအတိုင်း ဖြစ်ပါသည်
-        — Basic Training Class (လူကိုယ်တိုင် / Online) ဆရာ ဦးအဂ္ဂ ရေးသားသည့် English Speaking for Everyone (စာအုပ်ဖြင့်)
-        Intermediate Class (လူကိုယ်တိုင် / Online) ဆရာ ဦးအဂ္ဂ ရေးသားသည့် English Speaking for Everyone (စာအုပ်ဖြင့်)
-        Advanced Class (လူကိုယ်တိုင်သာ) ဘဝတစ်လျှောက်လုံး အခမဲ့ သံဃာတော်များ၊ သီလရှင် ဆရာလေးများအတွက် 
-        အခြေခံအဆင့် A, B, C, D မှစ၍ သင်ကြားပေးသော အတန်းများ နွေရာသီ ကလေးသင်တန်းများ
-        Grammar သင်တန်းများ (Understanding and Using English Grammar, High School English Grammar,
-        Basic / Intermediate / Advanced Grammar in Use by Raymond Murphy,
-        A Practical English Grammar by A. J. Thomson & A. V. Martinet, Grammar Spectrum 1, 2, 3 by Ken Paterson, 
-        ဆရာကြီး ဦးစိုးမြင့်၏ လက်တွေ့ အင်္ဂလိပ်သဒ္ဒါ, Essential Grammar in Use,
-        High School English Grammar and Composition by Wren & Martin, Idioms for You by U Agga,
-        Essential Idioms in English by Robert J. Dixson, A Guide to Patterns in English by A. S. Hornby) 
-        Phonetics (အသံထွက်) သင်တန်းများ English to English Dictionary အသုံးပြုနည်း သင်တန်း ဓမ္မပဒ (DHAMMAPADA) ဒ
-        ေါ်မြတင် (M.A.) ဘာသာပြန် ဗုဒ္ဓဘုရားရှင်၏ အဆုံးအမများ (Basic / Higher Level, အတွဲ ၁၊ ၂) </p>
+<p>ပါရမီ အင်္ဂလိပ်စကားပြော သင်တန်းကျောင်း မှ ဖွင့်လှစ်သင်ကြားပေးလျက်ရှိသော သင်တန်းများမှာ အောက်ပါအတိုင်း ဖြစ်ပါသည်...</p>
 <table>
 <tr>
 <th>စဉ်</th>
@@ -151,27 +235,18 @@ footer { text-align: center; padding: 20px; background: #333; color: white; marg
 <section id="statement" class="hidden">
 <h2>Statement</h2>
 <h3>သင်တန်းသားများအတွက် ထုတ်ပြန်ချက်</h3>
-<p>
-ပြည်တွင်း/ပြည်ပ တက္ကသိုလ်များသို့ တက်ရောက်ကြမည့် သင်တန်းသူ/သားများအတွက် အထူးသင်တန်းများကို မတ်လတွင် ဖွင့်လှစ်ပေးသွားပါမည် ။ 
-၎င်းသင်တန်းအတွက် သတ်မှတ်ချက်များကိုလည်း မကြာမီ ထုတ်ပြန်ပေးသွားမည်ဖြစ်သည်။ သင်တန်းသားများအနေဖြင့် သင်တန်းအတွင်း စည်းကမ်းလိုက်နာရန်နှင့်
-လေ့ကျင့်မှုများကို အပြည့်အဝ ပါဝင်ဆောင်ရွက်ရန် မေတ္တာရပ်ခံအပ်ပါသည်။
-</p>
+<p>ပြည်တွင်း/ပြည်ပ တက္ကသိုလ်များသို့ တက်ရောက်ကြမည့် သင်တန်းသူ/သားများအတွက် အထူးသင်တန်းများကို မတ်လတွင် ဖွင့်လှစ်ပေးသွားပါမည်...</p>
 </section>
 
 <section id="contact" class="hidden">
 <h2>ဆက်သွယ်ရန်</h2>
-<p>
-အမှတ် (၃)<br>
-တောင်ဥက္ကလာပမြို့နယ်<br>
-ရန်ကုန်မြို့<br>
-ဖုန်း : 09-XXXXXXXXX
-</p>
+<p>အမှတ် (၃)<br>တောင်ဥက္ကလာပမြို့နယ်<br>ရန်ကုန်မြို့<br>ဖုန်း : 09-XXXXXXXXX</p>
 </section>
 
 </div>
 
 <footer>
-<p>&copy; 2024 Parami International English & Computer. All Rights Reserved.</p>
+<p>&copy; 2026 Parami International English & Computer. All Rights Reserved.</p>
 </footer>
 
 <script>
@@ -183,5 +258,3 @@ document.getElementById(id).classList.remove("hidden");
 
 </body>
 </html>
-
-
